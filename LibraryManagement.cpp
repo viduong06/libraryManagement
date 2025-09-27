@@ -8,8 +8,9 @@ private:
     string authorName;
     int numberOfBooks;
     int count = 0;
-public:
     tm publicDate;
+
+public:
     // Hàm khởi tạo 0 tham số
     Book() {
         bookName = "";
@@ -54,6 +55,10 @@ public:
                 << (publicDate.tm_mon + 1) << "/"
                 << (publicDate.tm_year + 1900)
                 << endl;
+    }
+
+    int getPublicYear() {
+        return publicDate.tm_year + 1900;
     }
 };
 
@@ -116,7 +121,7 @@ private:
     Node* merge(Node* first, Node* second) {
         if (!first) return second;
         if (!second) return first;
-        if (first->data.publicDate.tm_year > second->data.publicDate.tm_year) {
+        if (first->data.getPublicYear() > second->data.getPublicYear()) {
             first->next = merge(first->next, second);
             if (first->next) first->next->prev = first;
             first->prev = nullptr;
