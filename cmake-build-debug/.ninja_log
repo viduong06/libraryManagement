@@ -1,0 +1,4 @@
+# ninja log v6
+2	296	7806793288503999	build.ninja	d70546ecc4f39e67
+21	427	7806645515245593	CMakeFiles/BTL_DSA.dir/LibraryManagement.cpp.obj	245c0a8f014feb97
+427	507	7806645519318263	BTL_DSA.exe	e6e8e4d15e3cab76
