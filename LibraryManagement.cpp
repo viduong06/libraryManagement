@@ -215,7 +215,6 @@ public:
 };
 
 class libraryManagement {
-    unordered_map<string, User> hashUser;
     unordered_map<string, Book*> hashBook;
     unordered_map<string, vector<string> > hashBorrowBooks;
 
@@ -228,15 +227,6 @@ public:
         if (hashBook.count(bookName)) {
             return hashBook[bookName];
         }
-        return nullptr;
-    }
-
-    void addUser(User u) {
-        hashUser[u.getNationID()] = u;
-    }
-
-    User *findUser(string id) {
-        if (hashUser.count(id)) return &hashUser[id];
         return nullptr;
     }
 
