@@ -95,11 +95,11 @@ public:
 };
 
 struct Node {
-    Book data;
+    Book *data;
     Node *prev;
     Node *next;
 
-    Node(Book value) {
+    Node(Book *value) {
         data = value;
         prev = nullptr;
         next = nullptr;
@@ -139,7 +139,7 @@ private:
     Node *merge(Node *first, Node *second) {
         if (!first) return second;
         if (!second) return first;
-        if (first->data.getPublicYear() > second->data.getPublicYear()) {
+        if (first->data->getPublicYear() > second->data->getPublicYear()) {
             first->next = merge(first->next, second);
             if (first->next) first->next->prev = first;
             first->prev = nullptr;
@@ -158,7 +158,7 @@ public:
     }
 
     // Hàm thêm sách vào danh sách liên kết
-    void insertBookIntoDbLinkedList(Book value) {
+    void insertBookIntoDbLinkedList(Book* value) {
         Node *newNode = new Node(value);
         if (head == nullptr) {
             head = newNode;
@@ -171,6 +171,20 @@ public:
             temp->next = newNode;
             newNode->prev = temp;
         }
+    }
+    // In danh sách liên kết
+    void display() {
+        Node *temp = head;
+        printCentered("Thu vien", 50);
+        while (temp != nullptr) {
+
+            temp->data->display();
+            temp = temp->next;
+        }
+        for (int i = 0; i < 50; i++) {
+            cout << "=";
+        }
+        cout << endl;
     }
 
     void sortByPublicYear() {
@@ -327,7 +341,7 @@ int main() {
                 cin.ignore();
                 Book* book = new Book();
                 book->insertBook();
-                thuVien.insertBookIntoDbLinkedList(*book);
+                thuVien.insertBookIntoDbLinkedList(book);
                 lib.addBook(book);
                 break;
             }
@@ -375,7 +389,7 @@ int main() {
                 break;
             }
             case 7: {
-                lib.displayLibraryBooks();
+                thuVien.display();
                 cout << endl;
                 break;
             }
